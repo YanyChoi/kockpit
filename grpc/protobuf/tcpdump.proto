@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/YanyChoi/kockpit/grpc/protobuf";
+
+package kockpit.v1;
+
+service TCPDump {
+  rpc Start(TCPDumpRequest) returns (stream TCPDumpResponse) {}
+  rpc Stop(TCPDumpRequest) returns (TCPDumpResponse) {}
+}
+
+message TCPDumpRequest {
+  string interface = 1;
+  string filter = 2;
+}
+
+message TCPDumpResponse {
+  string packet = 1;
+  string error = 2;
+}
